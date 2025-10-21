@@ -1,16 +1,16 @@
 server:
-  port: 8082
+  port: 8085
   url: "http://localhost:${server.port}"
   version: "1.0"
 
 
 spring:
   application:
-    name: card
+    name: profile
   profiles:
     active: dev
   datasource:
-    url: jdbc:postgresql://localhost:5432/one_bank_card
+    url: jdbc:postgresql://localhost:5432/one_bank_profile
     username: postgres
     password: siroj1294
   jpa:
