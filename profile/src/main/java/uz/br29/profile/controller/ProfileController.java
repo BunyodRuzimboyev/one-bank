@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import uz.br29.profile.dto.request.ProfileCreateRequest;
+import uz.br29.profile.dto.request.ProfileRegistrationRequest;
 import uz.br29.profile.service.ProfileService;
 
 @RestController
@@ -25,6 +26,11 @@ public class ProfileController {
     @PostMapping("/create")
     public ResponseEntity<?> create(@Valid @RequestBody ProfileCreateRequest request) {
         return profileService.create(request);
+    }
+
+    @PostMapping("/registration") // bu api auth-service dan chaqiriladi.
+    public ResponseEntity<Boolean> create2(@Valid @RequestBody ProfileRegistrationRequest request) {
+        return profileService.create2(request);
     }
 
 }
