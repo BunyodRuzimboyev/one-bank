@@ -1,21 +1,20 @@
-package uz.br29.profile.dto.request;
+package uz.br29.profile.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
-import uz.br29.profile.enums.ProfileStatus;
-import uz.br29.profile.enums.RoleEnum;
+import uz.br29.profile.enums.ProfileRoleEnum;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ProfileCreateRequest {
-
+public class ProfileRegistrationDTO {
+    @NotBlank(message = "Id required")
     private String id;
 
     @NotBlank(message = "Ism bo‘sh bo‘lmasligi kerak")
@@ -25,16 +24,11 @@ public class ProfileCreateRequest {
     private String surname;
 
     @NotBlank(message = "PhoneNumber bo‘sh bo‘lmasligi kerak")
-    private String phoneNumber;
+    private String phoneNumber; // username
 
     @NotBlank(message = "Parol bo‘sh bo‘lmasligi kerak")
     private String password;
 
     @NotEmpty(message = "Role bo‘sh bo‘lmasligi kerak")
-    private List<RoleEnum> roleList;
-
-    private LocalDateTime createdDate;
-    private ProfileStatus status;
-    private String jwt;
-
+    private List<ProfileRoleEnum> roleList;
 }

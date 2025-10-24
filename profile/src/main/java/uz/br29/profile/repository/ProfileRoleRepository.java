@@ -1,28 +1,27 @@
 package uz.br29.profile.repository;
 
+
 import jakarta.transaction.Transactional;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
-import uz.br29.profile.entity.ProfileRole;
-import uz.br29.profile.enums.RoleEnum;
+import org.springframework.data.repository.CrudRepository;
+import uz.br29.profile.entity.ProfileRoleEntity;
+import uz.br29.profile.enums.ProfileRoleEnum;
 
 import java.util.List;
 
-@Repository
-public interface ProfileRoleRepository extends JpaRepository<ProfileRole, String> {
+public interface ProfileRoleRepository extends CrudRepository<ProfileRoleEntity, Integer> {
 
-    @Query("select roles from ProfileRole where profileId =?1")
-    List<RoleEnum> getRoleListByProfileId(String profileId);
-
-    @Transactional
-    @Modifying
-    @Query("Delete from ProfileRole where profileId =?1 and roles =?2")
-    void deleteByIdAndRoleEnum(String profileId, RoleEnum role);
+    @Query("select roles from ProfileRoleEntity where profileId =?1")
+    List<ProfileRoleEnum> getRoleListByProfileId(String profileId);
 
     @Transactional
     @Modifying
-    @Query("Delete from ProfileRole where profileId =?1")
+    @Query("Delete from ProfileRoleEntity where profileId =?1 and roles =?2")
+    void deleteByIdAndRoleEnum(String profileId, ProfileRoleEnum role);
+
+    @Transactional
+    @Modifying
+    @Query("Delete from ProfileRoleEntity where profileId =?1")
     void deleteByProfileId(String profileId);
 }

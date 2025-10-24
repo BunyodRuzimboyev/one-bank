@@ -1,22 +1,20 @@
 package uz.br29.profile.entity;
 
+
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import uz.br29.profile.enums.ProfileStatus;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
-@Table(name = "_profile")
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-@Builder
-public class Profile {
-
+@Entity
+@Table(name = "profile")
+public class ProfileEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
@@ -27,27 +25,26 @@ public class Profile {
     @Column(name = "surname", nullable = false)
     private String surname;
 
-    @Column(name = "phone_number", nullable = false)
+    @Column(name = "phoneNumber", nullable = false)
     private String phoneNumber;
 
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     private ProfileStatus status;
 
     @Column(name = "photo_id")
-    private String photoId;
+    private String photoId; // Will do it later (in attach topic)
 
-    @Column(name = "visible")
-    private Boolean visible;
+    @Column(name = "visible", nullable = false)
+    private Boolean visible = true;
 
     @CreationTimestamp
-    @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
+    @Column(name = "created_date")
+    private LocalDateTime createdDate;
 
     @OneToMany(mappedBy = "profile")
-    private List<ProfileRole> roleList;
-
+    private List<ProfileRoleEntity> roleList;
 }
