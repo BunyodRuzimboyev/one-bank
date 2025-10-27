@@ -57,3 +57,6 @@ info:
     name: "profile"
     description: "Microservice profile application"
     version: "1.0.0"
+
+accounts:
+  message: "Profile server message"

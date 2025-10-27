@@ -15,4 +15,5 @@ public interface NotificationFeignClient {
     @GetMapping("/api/v1/notification/{phoneNumber}")
     ResponseEntity<List<NotificationDTO>> getNotificationsByPhoneNumber(@PathVariable String phoneNumber);
 
+
 }
